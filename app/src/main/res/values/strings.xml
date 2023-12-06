@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kicaw Capstone</string>
+    <string name="search_bird">Search Bird</string>
+    <string name="home_screen">Home</string>
+    <string name="scan_screen">Scan</string>
+    <string name="history_screen">History</string>
+    <string name="forum_screen">Forum</string>
+    <string name="welcome_banner">Welcome to Kicaw..</string>
+    <string name="detail_header">Details</string>
+</resources>
