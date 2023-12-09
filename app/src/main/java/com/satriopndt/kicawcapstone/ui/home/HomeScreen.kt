@@ -93,7 +93,7 @@ fun HomeScreen(
             }
         }
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(160.dp),
+            columns = GridCells.Adaptive(90.dp),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -119,10 +119,6 @@ fun HomeContent(
     modifier: Modifier = Modifier,
     navigateToDetail: (Long) -> Unit
 ) {
-//    val navController = rememberNavController()
-//    val scaffoldState = rememberScaffoldState()
-//    val navBackStackEntry by navController.currentBackStackEntryAsState()
-//    val currentRoute = navBackStackEntry?.destination?.route
 
     Surface(
         modifier = Modifier
@@ -156,7 +152,7 @@ fun HomeContent(
                 }
             }
             LazyVerticalGrid(
-                columns = GridCells.Adaptive(160.dp),
+                columns = GridCells.Adaptive(90.dp),
                 contentPadding = PaddingValues(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),

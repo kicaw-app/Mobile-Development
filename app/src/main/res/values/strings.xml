@@ -7,4 +7,7 @@
     <string name="forum_screen">Forum</string>
     <string name="welcome_banner">Welcome to Kicaw..</string>
     <string name="detail_header">Details</string>
+    <string name="btn_back">Arrow Back</string>
+    <string name="title_forum">Title Forum</string>
+    <string name="desc_forum">Description Chat</string>
 </resources>

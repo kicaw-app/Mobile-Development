@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
@@ -21,7 +23,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -51,18 +52,25 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.R
+import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 import com.satriopndt.kicawcapstone.ui.theme.greenToska
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController
 ) {
+
+    val scrollStateVertical = rememberScrollState()
 
     Surface(
         modifier = Modifier
+            .verticalScroll(scrollStateVertical)
             .fillMaxSize()
             .background(Color.White)
             .padding(28.dp)
@@ -79,6 +87,7 @@ fun LoginScreen(
         var showPassword by remember {
             mutableStateOf(false)
         }
+
 
         val register = "Sign Up"
         val textRegister = buildAnnotatedString {
@@ -99,8 +108,7 @@ fun LoginScreen(
                 .fillMaxSize()
         ) {
             Column(
-                modifier = Modifier
-                    .weight(1f),
+                modifier = Modifier,
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -227,7 +235,9 @@ fun LoginScreen(
                                 start = 40.dp,
                                 end = 40.dp
                             ),
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  navController.navigate(Screen.Home.route)
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = greenToska)
                     ) {
                         Text(
@@ -244,6 +254,9 @@ fun LoginScreen(
                     ClickableText(
                         text = textRegister,
                         onClick = {
+                            navController.navigate(Screen.SignUp.route){
+                                popUpTo(0)
+                            }
                             Toast.makeText(context, "menuju halaman register", Toast.LENGTH_SHORT).show()
                         }
                     )
@@ -260,6 +273,6 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     KicawCapstoneTheme {
-        LoginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }

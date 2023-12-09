@@ -38,12 +38,18 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.R.*
+import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 import com.satriopndt.kicawcapstone.ui.theme.greenToska
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -214,14 +220,19 @@ fun SignUpScreen() {
                     },
                     visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
-                        if (showPassword){
-                            IconButton(onClick = {showPassword = false}) {
-                                Icon(imageVector = Icons.Filled.Visibility,
-                                    contentDescription = "hide_password")
+                        if (showPassword) {
+                            IconButton(onClick = { showPassword = false }) {
+                                Icon(
+                                    imageVector = Icons.Filled.Visibility,
+                                    contentDescription = "hide_password"
+                                )
                             }
-                        }else {
-                            IconButton(onClick = {showPassword = true}) {
-                                Icon(imageVector = Icons.Filled.VisibilityOff, contentDescription = "hide_password")
+                        } else {
+                            IconButton(onClick = { showPassword = true }) {
+                                Icon(
+                                    imageVector = Icons.Filled.VisibilityOff,
+                                    contentDescription = "hide_password"
+                                )
                             }
                         }
                     },
@@ -240,13 +251,16 @@ fun SignUpScreen() {
                     modifier = Modifier
                         .width(200.dp),
                     onClick = {
-                      
+                        navController.navigate(Screen.Login.route) {
+                            popUpTo(0)
+                        }
                     },
                     shape = RoundedCornerShape(15.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = greenToska)
 
                 ) {
-                    Text(text = "Create",
+                    Text(
+                        text = "Create",
                         color = colorResource(id = color.white),
                         modifier = Modifier
                             .padding(8.dp)
@@ -261,6 +275,6 @@ fun SignUpScreen() {
 @Composable
 fun SignUpScreenPreview() {
     KicawCapstoneTheme {
-        SignUpScreen()
+        SignUpScreen(navController = rememberNavController())
     }
 }

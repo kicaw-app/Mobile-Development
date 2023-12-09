@@ -25,14 +25,16 @@ fun BirdItem(
     modifier: Modifier = Modifier
 ){
     Column(modifier = Modifier) {
-        Image(painter = painterResource(photoUrl),
+        Image(
+            painter = painterResource(photoUrl),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(180.dp)
                 .clip(Shapes.medium)
         )
-        Text(text = name,
+        Text(
+            text = name,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.titleMedium.copy(
