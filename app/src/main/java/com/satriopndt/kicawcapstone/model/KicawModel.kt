@@ -1,5 +1,7 @@
 package com.satriopndt.kicawcapstone.model
 
+import java.util.Date
+
 data class KicawModel (
     val id: Long,
     val name: String,
@@ -8,3 +10,10 @@ data class KicawModel (
     val type: String,
     val description: String,
 )
+
+//data class KicawHistory(
+//    val id: Long,
+//    val photoUrl: Int,
+//    val title,
+//    val date,
+//)

@@ -14,9 +14,9 @@ class KicawRepository {
         return FakeDataBird.dummyBird
     }
 
-//    fun getHistory(): List<KicawModel>{
-//        return
-//    }
+    fun getHistory(): List<KicawModel>{
+        return FakeDataBird.dummyBird
+    }
 
     fun searchBird(query: String): List<KicawModel>{
         return FakeDataBird.dummyBird.filter {

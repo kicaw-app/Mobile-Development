@@ -29,6 +29,8 @@ import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 @Composable
 fun HistoryCard(
     modifier: Modifier = Modifier,
+    title: String,
+    photoUrl: Int
 ) {
 
     Row(
@@ -39,7 +41,7 @@ fun HistoryCard(
             .clip(RoundedCornerShape(8.dp)),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(painter = painterResource(id = R.drawable.blue_bird),
+        Image(painter = painterResource(id = photoUrl),
             contentDescription = "History Avatar",
             modifier = Modifier
                 .padding(4.dp)
@@ -48,7 +50,7 @@ fun HistoryCard(
         )
         Spacer(modifier = Modifier.width(8.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = "history bird",
+            Text(text = title,
                 fontWeight = FontWeight.Bold,
             )
             Text(modifier = Modifier
@@ -63,6 +65,7 @@ fun HistoryCard(
 @Composable
 fun PreviewHistory() {
     KicawCapstoneTheme {
-        HistoryCard()
+        HistoryCard(title = "",
+            photoUrl = R.drawable.blue_bird)
     }
 }

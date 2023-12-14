@@ -17,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.component.BottomBar
+import com.satriopndt.kicawcapstone.ui.detail.DetailScreen
 import com.satriopndt.kicawcapstone.ui.history.HistoryScreen
 import com.satriopndt.kicawcapstone.ui.home.HomeScreen
 import com.satriopndt.kicawcapstone.ui.login.LoginScreen
@@ -80,6 +81,9 @@ fun KicawApp(
             }
             composable(Screen.History.route){
                 HistoryScreen(navController = navController)
+            }
+            composable(Screen.DetailBirds.route){
+                DetailScreen()
             }
         }
 

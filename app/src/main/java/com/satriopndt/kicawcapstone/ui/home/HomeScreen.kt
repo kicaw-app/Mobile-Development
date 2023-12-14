@@ -74,46 +74,49 @@ fun HomeScreen(
     navController: NavHostController,
 ) {
     val groupBirds by viewModel.groupBirds.collectAsState()
+//    var query by remember {
+//        mutableStateOf("")
+//    }
     val query by viewModel.query
+
     var showMenu by remember {
         mutableStateOf(false)
     }
 
-//    TopAppBar(
-//       modifier = Modifier,
-//        actions =
-//    ) {
-//        actions = {
-//            IconButton(onClick = { showMenu != showMenu }) {
-//                Icon(imageVector = Icons.Default.Menu, contentDescription = "More")
-//            }
-//            DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-//                DropdownMenuItem(onClick = { /*TODO*/ }) {
-//
-//                }
-//            }
-//        }
-//    }
 
     Column(
         modifier = modifier
     ) {
 
-        Welcome()
+        TopAppBar(
+            title = {},
+            actions = {
+                IconButton(onClick = { /*TODO*/ }
+                ) {
+                    Icon(imageVector = Icons.Default.Menu,
+                        contentDescription = "Menu",
+
+                    )
+                }
+            },
+            backgroundColor = Color.White
+        )
+
+        Welcome(modifier = Modifier.background(Color.White))
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             SearchBar(
                 query = query,
-                onQueryChanged = viewModel::Search
+                onQueryChange = viewModel::Search
             );
             IconButton(
                 modifier = Modifier
                     .size(50.dp)
                     .clip(RoundedCornerShape(12.dp)),
 //                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-                onClick = { navController.navigate(Screen.History.route)}) {
+                onClick = { navController.navigate(Screen.History.route) }) {
                 Icon(
                     modifier = Modifier
                         .size(35.dp),
@@ -132,86 +135,87 @@ fun HomeScreen(
         ) {
             groupBirds.forEach { _, kicawModels ->
                 items(kicawModels) {
-                    BirdItem(photoUrl = it.photoUrl,
-                        name = it.name,
-                        modifier.clickable { navigateToDetail(it.id) })
-                }
-            }
-
-        }
-
-    }
-}
-
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@Composable
-fun HomeContent(
-    orderBird: List<OrderBird>,
-    modifier: Modifier = Modifier,
-    navigateToDetail: (Long) -> Unit,
-    navController: NavHostController
-) {
-
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding()
-    ) {
-
-        Column(
-            modifier = Modifier
-        ) {
-            Welcome()
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                SearchBar(query = "",
-                    onQueryChanged = {})
-                IconButton(
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(RoundedCornerShape(12.dp)),
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-                    onClick = { navController.navigate(Screen.History.route)}) {
-                    Icon(
-                        modifier = Modifier
-                            .size(35.dp),
-                        imageVector = Icons.Default.History,
-                        contentDescription = "History",
-
-                    )
-                }
-            }
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(90.dp),
-                contentPadding = PaddingValues(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = modifier
-            ) {
-                items(orderBird) { data ->
                     BirdItem(
-                        photoUrl = data.kicawModel.photoUrl,
-                        name = data.kicawModel.name,
-                        modifier = Modifier.clickable {
-                            navigateToDetail(data.kicawModel.id)
-                        }
-                    )
+                        photoUrl = it.photoUrl,
+                        name = it.name,
+                        onClick = {navController.navigate(Screen.DetailBirds.route)})
                 }
             }
-        }
 
+        }
 
     }
 }
 
-
-//@Preview(showBackground = true)
+//@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 //@Composable
-//fun HomeScreenPreview() {
-//    KicawCapstoneTheme {
-//        HomeContent()
+//fun HomeContent(
+//    orderBird: List<OrderBird>,
+//    modifier: Modifier = Modifier,
+//    navigateToDetail: (Long) -> Unit,
+//    navController: NavHostController
+//) {
+//
+//    Surface(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(Color.White)
+//            .padding()
+//    ) {
+//
+//        Column(
+//            modifier = Modifier
+//        ) {
+//            Welcome()
+//            Row(
+//                horizontalArrangement = Arrangement.SpaceBetween,
+//                verticalAlignment = Alignment.CenterVertically
+//            ) {
+//                SearchBar(query = "",
+//                    onQueryChanged = {})
+//                IconButton(
+//                    modifier = Modifier
+//                        .size(50.dp)
+//                        .clip(RoundedCornerShape(12.dp)),
+////                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+//                    onClick = { navController.navigate(Screen.History.route) }) {
+//                    Icon(
+//                        modifier = Modifier
+//                            .size(35.dp),
+//                        imageVector = Icons.Default.History,
+//                        contentDescription = "History",
+//
+//                        )
+//                }
+//            }
+//            LazyVerticalGrid(
+//                columns = GridCells.Adaptive(90.dp),
+//                contentPadding = PaddingValues(16.dp),
+//                horizontalArrangement = Arrangement.spacedBy(16.dp),
+//                verticalArrangement = Arrangement.spacedBy(16.dp),
+//                modifier = modifier
+//            ) {
+//                items(orderBird) { data ->
+//                    BirdItem(
+//                        photoUrl = data.kicawModel.photoUrl,
+//                        name = data.kicawModel.name,
+//                        modifier = Modifier.clickable {
+//                            navController.navigate(Screen.DetailBirds.route)
+//                        }
+//                    )
+//                }
+//            }
+//        }
+//
+//
 //    }
 //}
+
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    KicawCapstoneTheme {
+        HomeScreen(navigateToDetail = {}, navController = rememberNavController())
+    }
+}

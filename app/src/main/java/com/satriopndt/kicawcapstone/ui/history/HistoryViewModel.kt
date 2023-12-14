@@ -1,5 +1,7 @@
 package com.satriopndt.kicawcapstone.ui.history
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satriopndt.kicawcapstone.model.KicawModel
@@ -13,25 +15,18 @@ import kotlinx.coroutines.flow.collect
 
 class HistoryViewModel(private val repository: KicawRepository): ViewModel() {
 
-//    private val _uiState: MutableStateFlow<UiState<List<OrderBird>>> = MutableStateFlow(UiState.Loading)
-//
-//    val uiState: StateFlow<UiState<List<OrderBird>>> get() = _uiState
-//
+    private val _uiState = MutableLiveData<List<KicawModel>>()
+
+    val uiState : LiveData<List<KicawModel>> = _uiState
+
 //    private val _groupHistory = MutableStateFlow(repository.getBirdies()
 //        .sortedBy { it.name }
 //        .groupBy { it.name[0] })
-//
+
 //    val groupBirds: StateFlow<Map<Char, List<KicawModel>>> get() = _groupBird
-//
-//   fun getAllBird() {
-//        viewModelScope.launch {
-//            repository.getAll()
-//                .catch {
-//                    _uiState.value = UiState.Error(it.message.toString())
-//                }
-//                .collect { historyBird ->
-//                    _uiState.value = UiState.Success(historyBird)
-//                }
-//        }
-//    }
+
+   fun getAllHistory() {
+       val history = repository.getHistory()
+       _uiState.value = history
+    }
 }

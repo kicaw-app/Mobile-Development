@@ -1,6 +1,7 @@
 package com.satriopndt.kicawcapstone.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -22,9 +23,10 @@ import com.satriopndt.kicawcapstone.ui.theme.Shapes
 fun BirdItem(
     photoUrl: Int,
     name: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    Column(modifier = Modifier) {
+    Column(modifier = Modifier.clickable { onClick.invoke() }) {
         Image(
             painter = painterResource(photoUrl),
             contentDescription = null,
@@ -49,6 +51,6 @@ fun BirdItem(
 @Composable
 fun BirdItemPreview(){
     KicawCapstoneTheme {
-        BirdItem(R.drawable.blue_bird, "Blue Bird")
+        BirdItem(R.drawable.blue_bird, "Blue Bird", onClick = {})
     }
 }

@@ -10,6 +10,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
@@ -22,12 +26,13 @@ import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 @Composable
 fun SearchBar(
     query: String,
-    onQueryChanged: (String) -> Unit,
+    onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
 ){
+
     TextField(
-        value = "",
-        onValueChange = {},
+        value = query,
+        onValueChange = onQueryChange,
         leadingIcon = {
             Icon(imageVector = Icons.Default.Search,
                 contentDescription = "Search"
@@ -48,7 +53,9 @@ fun SearchBar(
 @Composable
 fun SearchBarPreview(){
     KicawCapstoneTheme {
-        SearchBar(query = "",
-            onQueryChanged = {})
+        SearchBar(
+            query = "",
+            onQueryChange = {}
+        )
     }
 }
