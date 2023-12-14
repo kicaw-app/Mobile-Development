@@ -4,9 +4,15 @@ import com.satriopndt.kicawcapstone.R
 
 object FakeDataBird {
     val dummyBird = listOf(
-        KicawModel(1, "Kakatua", R.drawable.blue_bird, 1000, "Probosciger aterrimus", "keren"),
-        KicawModel(2, "nuri", R.drawable.logo_prikitiw, 222, "burung kecil", "lucu"),
-        KicawModel(3, "blue bird", R.drawable.blue_bird, 2311, "burung biru", "baguus")
+        KicawModel(1, "blue bird", R.drawable.blue_bird, 1000, "Blue Bird", "keren"),
+        KicawModel(2, "blue bird", R.drawable.blue_bird, 222, "Blue Bird", "lucu"),
+        KicawModel(3, "blue bird", R.drawable.blue_bird, 2311, "Blue Bird", "baguus"),
+        KicawModel(4, "blue bird", R.drawable.blue_bird, 1000, "Blue Bird", "keren"),
+        KicawModel(5, "blue bird", R.drawable.blue_bird, 222, "Blue Bird", "lucu"),
+        KicawModel(6, "blue bird", R.drawable.blue_bird, 2311, "Blue Bird", "baguus"),
+        KicawModel(7, "blue bird", R.drawable.blue_bird, 222, "Blue Bird", "lucu"),
+        KicawModel(8, "blue bird", R.drawable.blue_bird, 2311, "Blue Bird", "baguus"),
+        KicawModel(9, "blue bird", R.drawable.blue_bird, 1000, "Blue Bird", "keren"),
 
     )
 }

@@ -17,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.component.BottomBar
+import com.satriopndt.kicawcapstone.ui.history.HistoryScreen
 import com.satriopndt.kicawcapstone.ui.home.HomeScreen
 import com.satriopndt.kicawcapstone.ui.login.LoginScreen
 import com.satriopndt.kicawcapstone.ui.signup.SignUpScreen
@@ -33,12 +34,12 @@ fun KicawApp(
     val currentRoute = navBackStackEntry?.destination?.route
     androidx.compose.material.Scaffold(
         bottomBar = {
-            if (currentRoute != Screen.DetailBirds.route && currentRoute != Screen.Login.route && currentRoute != Screen.SignUp.route) {
+            if (Screen.useBottombar.contains(currentRoute)) {
                 BottomBar(navController)
             }
         },
         floatingActionButton = {
-            if (currentRoute != Screen.DetailBirds.route && currentRoute != Screen.Login.route && currentRoute != Screen.SignUp.route) {
+            if (Screen.useBottombar.contains(currentRoute)) {
                 FloatingActionButton(
                     onClick = {},
                     backgroundColor = colorResource(id = R.color.white)
@@ -73,8 +74,12 @@ fun KicawApp(
                 HomeScreen(
                     navigateToDetail = { birdId ->
                         navController.navigate(Screen.DetailBirds.createRoute(birdId))
-                    }
+                    },
+                    navController = navController
                 )
+            }
+            composable(Screen.History.route){
+                HistoryScreen(navController = navController)
             }
         }
 

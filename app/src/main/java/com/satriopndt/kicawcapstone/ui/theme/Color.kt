@@ -13,3 +13,6 @@ val Pink40 = Color(0xFF7D5260)
 val Neutral8 = Color(0xff121212)
 
 val greenToska = Color(0xff079AA4)
+val blueGreen = Color(0xFF48CAE4)
+val toskaLight = Color(0xFFADE8F4)
+val BlueLight = Color(0xFFA2D2FF)

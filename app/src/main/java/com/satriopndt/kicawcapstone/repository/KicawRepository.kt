@@ -14,6 +14,10 @@ class KicawRepository {
         return FakeDataBird.dummyBird
     }
 
+//    fun getHistory(): List<KicawModel>{
+//        return
+//    }
+
     fun searchBird(query: String): List<KicawModel>{
         return FakeDataBird.dummyBird.filter {
             it.name.contains(query, ignoreCase = false)

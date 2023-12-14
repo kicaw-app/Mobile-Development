@@ -11,5 +11,12 @@ sealed class Screen(val route: String){
         fun createRoute(birdId: Long) = "home/${birdId}"
     }
 
+    companion object{
+        val useBottombar = listOf(
+            Home.route,
+            Forum.route
+        )
+    }
+
 
 }

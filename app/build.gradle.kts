@@ -51,6 +51,8 @@ android {
 
 dependencies {
 
+    implementation ("androidx.core:core-splashscreen:1.0.0")
+
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
     implementation ("androidx.navigation:navigation-compose:2.7.5")
     implementation ("io.coil-kt:coil-compose:2.5.0")

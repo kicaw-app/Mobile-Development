@@ -19,10 +19,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.satriopndt.kicawcapstone.R
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 
@@ -48,7 +50,8 @@ fun Welcome(
        ) {
            Text(
                text = stringResource(id = R.string.welcome_banner),
-               fontWeight = FontWeight.ExtraBold
+               fontWeight = FontWeight.ExtraBold,
+               style = TextStyle(fontSize = 32.sp)
            )
        }
 

@@ -118,7 +118,7 @@ fun LoginScreen(
                         contentDescription = null,
                         contentScale = ContentScale.Fit,
                         modifier = modifier
-                            .height(400.dp)
+                            .height(300.dp)
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(10.dp))
                             .rotate(360f)
