@@ -1,4 +1,4 @@
-package com.satriopndt.kicawcapstone.ui.detail
+ package com.satriopndt.kicawcapstone.ui.detail
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
