@@ -18,7 +18,17 @@ class KicawRepository {
         return FakeDataBird.dummyBird
     }
 
+    fun getForum(): List<KicawModel>{
+        return FakeDataBird.dummyBird
+    }
+
     fun searchBird(query: String): List<KicawModel>{
+        return FakeDataBird.dummyBird.filter {
+            it.name.contains(query, ignoreCase = false)
+        }
+    }
+
+    fun searchForum(query: String): List<KicawModel>{
         return FakeDataBird.dummyBird.filter {
             it.name.contains(query, ignoreCase = false)
         }
