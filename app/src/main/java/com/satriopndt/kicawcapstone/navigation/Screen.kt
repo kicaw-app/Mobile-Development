@@ -7,6 +7,8 @@ sealed class Screen(val route: String){
     object Scan: Screen("scan")
     object Forum: Screen("forum")
     object History: Screen("history")
+    object Profile: Screen("profile")
+    object Discuss: Screen("discuss")
     object DetailBirds: Screen("home/{birdId}"){
         fun createRoute(birdId: Long) = "home/${birdId}"
     }
@@ -14,7 +16,7 @@ sealed class Screen(val route: String){
     companion object{
         val useBottombar = listOf(
             Home.route,
-            Forum.route
+            Forum.route,
         )
     }
 
