@@ -2,14 +2,11 @@
     <string name="app_name">Kicaw Capstone</string>
     <string name="search_bird">Search Bird</string>
     <string name="home_screen">Home</string>
-    <string name="scan_screen">Scan</string>
     <string name="history_screen">History</string>
     <string name="forum_screen">Forum</string>
+    <string name="discuss_screen">Discuss</string>
     <string name="welcome_banner">Welcome to Kicaw..</string>
-    <string name="detail_header">Details</string>
     <string name="btn_back">Arrow Back</string>
-    <string name="title_forum">Title Forum</string>
-    <string name="desc_forum">Description Chat</string>
     <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="priceBird">Rp. %d</string>
 </resources>

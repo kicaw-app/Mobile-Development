@@ -1,30 +1,21 @@
 package com.satriopndt.kicawcapstone.ui.forum
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -35,6 +26,7 @@ import com.satriopndt.kicawcapstone.R
 import com.satriopndt.kicawcapstone.ViewModelFactory
 import com.satriopndt.kicawcapstone.di.Injection
 import com.satriopndt.kicawcapstone.navigation.Screen
+import com.satriopndt.kicawcapstone.ui.component.ForumCard
 import com.satriopndt.kicawcapstone.ui.component.SearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +41,11 @@ fun ForumScreen(
     )
 ) {
     val query = viewModel.query
+
+    val forum by viewModel.uiState.observeAsState(listOf())
+    LaunchedEffect(true){
+        viewModel.getAllForum()
+    }
 
     // Define some sample data for the chat bubbles
     val chats = listOf(
@@ -87,43 +84,18 @@ fun ForumScreen(
         // Use a Box to arrange the content and the search bar
         Box(modifier = Modifier.padding(paddingValues)) {
             // Use a LazyColumn to create the list of chat bubbles that can be scrolled
-//            LazyColumn(modifier = Modifier.fillMaxSize()) {
-//                items(chats) { chat ->
-//                    // Use a Card to create the chat bubble with title, message, and time
-//                    Card(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(8.dp),
-//                        elevation = CardDefaults
-//                            .cardElevation(defaultElevation = 4.dp)
-//                    ) {
-//                        Row(
-//                            modifier = Modifier
-//                                .padding(8.dp)
-//                                .fillMaxWidth(),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            // Use an Image to display the chat icon from a local resource
-//                            Image(
-//                                painter = painterResource(id = R.drawable.ic_chat), // TODO: Change this to your own icon resource
-//                                contentDescription = "Chat Icon",
-//                                modifier = Modifier
-//                                    .size(48.dp)
-//                            )
-//                            Spacer(modifier = Modifier.width(8.dp))
-//                            Column {
-//                                // Use a Text to display the chat title with bold style
-//                                Text(text = chat.title, style = typography.body1.copy(fontWeight = FontWeight.Bold))
-//                                // Use a Text to display the chat message with ellipsis
-//                                Text(text = chat.message, style = typography.body2, maxLines = 1, overflow = TextOverflow.Ellipsis)
-//                            }
-//                            Spacer(modifier = Modifier.weight(1f))
-//                            // Use a Text to display the chat time with gray color
-//                            Text(text = chat.time, style = typography.caption.copy(color = Color.Gray))
-//                        }
-//                    }
-//                }
-//            }
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                forum.forEach {  }
+                items(forum.size) {
+                    // Use a Card to create the chat bubble with title, message, and time
+                    val listForum = forum[it]
+                    ForumCard(
+                        title = listForum.title,
+                        message = listForum.message,
+                        time = listForum.time
+                    )
+                }
+            }
             // Use a TextField to create the search bar with label and placeholder
             SearchBar(
                 query = query,

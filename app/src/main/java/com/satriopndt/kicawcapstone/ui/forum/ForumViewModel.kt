@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.satriopndt.kicawcapstone.model.ForumModel
 import com.satriopndt.kicawcapstone.model.KicawModel
 import com.satriopndt.kicawcapstone.model.OrderBird
 import com.satriopndt.kicawcapstone.repository.KicawRepository
@@ -17,9 +18,9 @@ import kotlinx.coroutines.flow.collect
 
 class ForumViewModel(private val repository: KicawRepository): ViewModel() {
 
-    private val _uiState = MutableLiveData<List<KicawModel>>()
+    private val _uiState = MutableLiveData<List<ForumModel>>()
 
-    val uiState : LiveData<List<KicawModel>> = _uiState
+    val uiState : LiveData<List<ForumModel>> = _uiState
 
 //    private val _groupHistory = MutableStateFlow(repository.getBirdies()
 //        .sortedBy { it.name }

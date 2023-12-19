@@ -1,6 +1,8 @@
 package com.satriopndt.kicawcapstone.repository
 
 import com.satriopndt.kicawcapstone.model.FakeDataBird
+import com.satriopndt.kicawcapstone.model.FakeDataForum
+import com.satriopndt.kicawcapstone.model.ForumModel
 import com.satriopndt.kicawcapstone.model.KicawModel
 import com.satriopndt.kicawcapstone.model.OrderBird
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +20,8 @@ class KicawRepository {
         return FakeDataBird.dummyBird
     }
 
-    fun getForum(): List<KicawModel>{
-        return FakeDataBird.dummyBird
+    fun getForum(): List<ForumModel>{
+        return FakeDataForum.dummyForum
     }
 
     fun searchBird(query: String): List<KicawModel>{

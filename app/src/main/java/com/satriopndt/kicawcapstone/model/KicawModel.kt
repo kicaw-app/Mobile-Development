@@ -18,9 +18,9 @@ data class KicawModel (
 //    val date,
 //)
 
-data class ChatModel (
+data class ForumModel (
     val id: Long,
     val title: String,
-    val text: String,
+    val message: String,
     val time: String,
 )
