@@ -18,9 +18,11 @@ import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.component.BottomBar
 import com.satriopndt.kicawcapstone.ui.detail.DetailScreen
+import com.satriopndt.kicawcapstone.ui.forum.ForumScreen
 import com.satriopndt.kicawcapstone.ui.history.HistoryScreen
 import com.satriopndt.kicawcapstone.ui.home.HomeScreen
 import com.satriopndt.kicawcapstone.ui.login.LoginScreen
+import com.satriopndt.kicawcapstone.ui.scan.ScanScreen
 import com.satriopndt.kicawcapstone.ui.signup.SignUpScreen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 
@@ -42,7 +44,7 @@ fun KicawApp(
         floatingActionButton = {
             if (Screen.useBottombar.contains(currentRoute)) {
                 FloatingActionButton(
-                    onClick = {},
+                    onClick = {navController.navigate(Screen.Scan.route)},
                     backgroundColor = colorResource(id = R.color.white)
                 ) {
                     androidx.compose.material3.Icon(
@@ -84,6 +86,12 @@ fun KicawApp(
             }
             composable(Screen.DetailBirds.route){
                 DetailScreen()
+            }
+            composable(Screen.Scan.route){
+                ScanScreen(navController = navController)
+            }
+            composable(Screen.Forum.route){
+                ForumScreen(navController = navController)
             }
         }
 
