@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
@@ -37,6 +38,7 @@ import com.satriopndt.kicawcapstone.ui.component.BirdItem
 import com.satriopndt.kicawcapstone.ui.component.SearchBar
 import com.satriopndt.kicawcapstone.ui.component.Welcome
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+import com.satriopndt.kicawcapstone.ui.theme.blueBackground
 
 @Composable
 fun HomeScreen(
@@ -61,7 +63,7 @@ fun HomeScreen(
 
 
     Column(
-        modifier = modifier
+        modifier = modifier.background(blueBackground)
     ) {
 
         TopAppBar(
@@ -75,10 +77,10 @@ fun HomeScreen(
                     )
                 }
             },
-            backgroundColor = Color.White
+            backgroundColor = blueBackground
         )
 
-        Welcome(modifier = Modifier.background(Color.White))
+        Welcome(modifier = Modifier.background(blueBackground))
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -87,15 +89,16 @@ fun HomeScreen(
                 query = query,
                 onQueryChange = viewModel::Search
             );
-            IconButton(
+            Button(
                 modifier = Modifier
                     .size(50.dp)
-                    .clip(RoundedCornerShape(12.dp)),
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color.White),
 //                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                 onClick = { navController.navigate(Screen.History.route) }) {
                 Icon(
                     modifier = Modifier
-                        .size(35.dp),
+                        .size(50.dp),
                     imageVector = Icons.Default.History,
                     contentDescription = "History",
 

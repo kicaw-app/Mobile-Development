@@ -19,34 +19,29 @@ import kotlinx.coroutines.flow.collect
 class ForumViewModel(private val repository: KicawRepository): ViewModel() {
 
     private val _uiState = MutableLiveData<List<ForumModel>>()
-
     val uiState : LiveData<List<ForumModel>> = _uiState
 
-//    private val _groupHistory = MutableStateFlow(repository.getBirdies()
-//        .sortedBy { it.name }
-//        .groupBy { it.name[0] })
-
-//    val groupBirds: StateFlow<Map<Char, List<KicawModel>>> get() = _groupBird
-
-    private val _groupBird = MutableStateFlow(
-        repository.getBirdies()
-            .sortedBy { it.name }
-            .groupBy { it.name[0] }
-    )
 
     fun getAllForum() {
         val forum = repository.getForum()
         _uiState.value = forum
     }
 
-    val groupBirds: StateFlow<Map<Char, List<KicawModel>>> get() = _groupBird
+
+    private val _groupDiscuss = MutableStateFlow(
+        repository.getForum()
+            .sortedBy { it.title }
+            .groupBy { it.title[0] }
+    )
+
+    val groupForum: StateFlow<Map<Char, List<ForumModel>>> get() = _groupDiscuss
 
     private val _query = mutableStateOf("")
     val query: State<String> get() = _query
     fun Search(newQuery: String){
         _query.value = newQuery
-        _groupBird.value = repository.searchForum(_query.value)
-            .sortedBy { it.name }
-            .groupBy { it.name[0] }
+        _groupDiscuss.value = repository.searchForum(_query.value)
+            .sortedBy { it.title }
+            .groupBy { it.title[0] }
     }
 }

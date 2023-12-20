@@ -1,6 +1,6 @@
 package com.satriopndt.kicawcapstone.model
 
 data class ForumBird(
-    val ChatModel: ChatModel,
+    val forumModel: ForumModel,
     val history: Int
 )

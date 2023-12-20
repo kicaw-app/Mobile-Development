@@ -30,9 +30,10 @@ class KicawRepository {
         }
     }
 
-    fun searchForum(query: String): List<KicawModel>{
-        return FakeDataBird.dummyBird.filter {
-            it.name.contains(query, ignoreCase = false)
+
+    fun searchForum(query: String): List<ForumModel>{
+        return FakeDataForum.dummyForum.filter {
+            it.title.contains(query, ignoreCase = false)
         }
     }
 

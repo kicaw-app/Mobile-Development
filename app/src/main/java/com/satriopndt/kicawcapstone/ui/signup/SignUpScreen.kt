@@ -43,6 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.R.*
 import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+import com.satriopndt.kicawcapstone.ui.theme.blueBackground
 import com.satriopndt.kicawcapstone.ui.theme.greenToska
 
 @Composable
@@ -53,7 +54,7 @@ fun SignUpScreen(
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(blueBackground)
             .padding(28.dp)
     ) {
         var name by rememberSaveable {
@@ -80,7 +81,7 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth(1f)
                 .fillMaxHeight(1f)
-                .background(colorResource(id = color.white))
+                .background(blueBackground)
         ) {
             Row(
                 modifier = Modifier

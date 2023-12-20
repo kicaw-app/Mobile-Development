@@ -57,6 +57,8 @@ import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.R
 import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+import com.satriopndt.kicawcapstone.ui.theme.blueBackground
+import com.satriopndt.kicawcapstone.ui.theme.blueGreen
 import com.satriopndt.kicawcapstone.ui.theme.greenToska
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,7 +74,7 @@ fun LoginScreen(
         modifier = Modifier
             .verticalScroll(scrollStateVertical)
             .fillMaxSize()
-            .background(Color.White)
+            .background(blueBackground)
             .padding(28.dp)
     ) {
         val context = LocalContext.current
@@ -106,6 +108,7 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(blueBackground)
         ) {
             Column(
                 modifier = Modifier,
