@@ -18,6 +18,7 @@ sealed class Screen(val route: String){
         val useBottombar = listOf(
             Home.route,
             Forum.route,
+            Scan.route
         )
     }
 

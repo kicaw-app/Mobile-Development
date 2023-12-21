@@ -1,5 +1,6 @@
 package com.satriopndt.kicawcapstone.ui.history
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,6 +19,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,11 +38,12 @@ import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryScreen(
+    context: Context = LocalContext.current,
     modifier: Modifier = Modifier,
     navController: NavHostController,
     viewModel: HistoryViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
     ),
 

@@ -1,15 +1,18 @@
 package com.satriopndt.kicawcapstone.ui.home
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
@@ -26,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -37,13 +41,15 @@ import com.satriopndt.kicawcapstone.ui.component.BirdItem
 import com.satriopndt.kicawcapstone.ui.component.SearchBar
 import com.satriopndt.kicawcapstone.ui.component.Welcome
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+import com.satriopndt.kicawcapstone.ui.theme.blueBackground
 
 @Composable
 fun HomeScreen(
+    context: Context = LocalContext.current,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
     ),
     navigateToDetail: (Long) -> Unit,
@@ -61,7 +67,7 @@ fun HomeScreen(
 
 
     Column(
-        modifier = modifier
+        modifier = modifier.background(blueBackground)
     ) {
 
         TopAppBar(
@@ -75,10 +81,10 @@ fun HomeScreen(
                     )
                 }
             },
-            backgroundColor = Color.White
+            backgroundColor = blueBackground
         )
 
-        Welcome(modifier = Modifier.background(Color.White))
+        Welcome(modifier = Modifier.background(blueBackground))
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -89,13 +95,13 @@ fun HomeScreen(
             );
             IconButton(
                 modifier = Modifier
-                    .size(50.dp)
-                    .clip(RoundedCornerShape(12.dp)),
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color.White),
                 onClick = { navController.navigate(Screen.History.route) }) {
                 Icon(
                     modifier = Modifier
-                        .size(35.dp),
+                        .size(50.dp),
                     imageVector = Icons.Default.History,
                     contentDescription = "History",
 

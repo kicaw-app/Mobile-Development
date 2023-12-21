@@ -1,21 +1,21 @@
 package com.satriopndt.kicawcapstone.ui.forum
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import android.content.Context
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -27,89 +27,80 @@ import androidx.navigation.compose.rememberNavController
 import com.satriopndt.kicawcapstone.R
 import com.satriopndt.kicawcapstone.ViewModelFactory
 import com.satriopndt.kicawcapstone.di.Injection
-import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.component.ForumCard
+<<<<<<< HEAD
+import com.satriopndt.kicawcapstone.ui.component.SearchBarForum
+import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+import com.satriopndt.kicawcapstone.ui.theme.blueBackground
+=======
 import com.satriopndt.kicawcapstone.ui.component.SearchBar
 import com.satriopndt.kicawcapstone.ui.home.HomeScreen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+>>>>>>> 16144b9a8a7273e3c80c1b784a81c17574c9eb49
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForumScreen(
     modifier: Modifier = Modifier,
+    context: Context = LocalContext.current,
     navController: NavHostController,
     viewModel: ForumViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
-    )
+    ),
 ) {
     val query by viewModel.query
 
     val forum by viewModel.uiState.observeAsState(listOf())
-    LaunchedEffect(true){
+    LaunchedEffect(true) {
         viewModel.getAllForum()
     }
 
-    // Define some sample data for the chat bubbles
-    val chats = listOf(
-        Chat(title = "burung kenari", message = "mike: kira - kira ini dijual dmn ya", time = "10 menit"),
-        Chat(title = "burung nuri", message = "jhon: keren nii", time = "05 menit")
-    )
-    CenterAlignedTopAppBar(title = {
-        androidx.compose.material.Text(
-            text = stringResource(id = R.string.forum_screen),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp),
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center
-        )
-        androidx.compose.material.Icon(imageVector = Icons.Default.ArrowBackIosNew,
-            contentDescription = stringResource(
-                id = R.string.btn_back
-            ),
-            modifier = Modifier
-                .padding(16.dp)
-                .clickable { navController.navigate(Screen.Home.route) })
-    })
-    // Use a Scaffold to arrange the app bar, content, and bottom bar
-    Scaffold(
-
-//        floatingActionButton = {
-//            // Use a FloatingActionButton to create the "+" button for creating new chat
-//            FloatingActionButton(onClick = { /* TODO: Handle new chat button */ }) {
-//                Icon(imageVector = Icons.Default.Add, contentDescription = "New Chat")
-//            }
-//        },
-//        floatingActionButtonPosition = FabPosition.End
-    ) { paddingValues ->
-        // Use a Box to arrange the content and the search bar
-        Box(modifier = Modifier.padding(paddingValues)) {
-            // Use a LazyColumn to create the list of chat bubbles that can be scrolled
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                forum.forEach {  }
-                items(forum.size) {
-                    // Use a Card to create the chat bubble with title, message, and time
-                    val listForum = forum[it]
-                    ForumCard(
-                        title = listForum.title,
-                        message = listForum.message,
-                        time = listForum.time
-                    )
-                }
-            }
-            // Use a TextField to create the search bar with label and placeholder
-            SearchBar(
-                query = query,
-                onQueryChange = viewModel::Search
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(blueBackground)
+    ) {
+        CenterAlignedTopAppBar(title = {
+            Text(
+                text = stringResource(id = R.string.forum_screen),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center
             )
+        })
+        SearchBarForum(query = query, onQueryChange = viewModel::Search)
+
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            forum.forEach { }
+            items(forum.size) {
+                // Use a Card to create the chat bubble with title, message, and time
+                val listForum = forum[it]
+                ForumCard(
+                    title = listForum.title,
+                    message = listForum.message,
+                    time = listForum.time
+                )
+            }
         }
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun Preview(){
+    KicawCapstoneTheme {
+        ForumScreen(navController = rememberNavController())
+    }
+}
 // Define a data class to hold the chat information
+<<<<<<< HEAD
+//    data class Chat(val title: String, val message: String, val time: String)
+=======
 data class Chat(val title: String, val message: String, val time: String)
 
 @Preview(showBackground = true)
@@ -119,3 +110,4 @@ fun ForumScreenPreview() {
         ForumScreen(navController = rememberNavController())
     }
 }
+>>>>>>> 16144b9a8a7273e3c80c1b784a81c17574c9eb49
