@@ -69,8 +69,11 @@ fun KicawApp(
     ) { innerPadding ->
         val session by viewModel.getSession().observeAsState()
         var destination = Screen.Login.route
-            session?.let {
-            if (it.isLogin) destination = Screen.Home.route
+        session?.let {
+            if (it.isLogin) {
+                destination = Screen.Home.route
+            }
+
         }
 
         NavHost(
