@@ -56,6 +56,7 @@ import com.satriopndt.kicawcapstone.R.*
 import com.satriopndt.kicawcapstone.ViewModelFactory
 import com.satriopndt.kicawcapstone.di.Injection
 import com.satriopndt.kicawcapstone.navigation.Screen
+import com.satriopndt.kicawcapstone.ui.helper.UiState
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 import com.satriopndt.kicawcapstone.ui.theme.blueBackground
 import com.satriopndt.kicawcapstone.ui.theme.greenToska
@@ -75,21 +76,21 @@ fun SignUpScreen(
             .background(blueBackground)
             .padding(28.dp)
     ) {
-        var name by rememberSaveable {
-            mutableStateOf("")
-        }
-
-        var username by rememberSaveable {
-            mutableStateOf("")
-        }
-
-        var email by rememberSaveable {
-            mutableStateOf("")
-        }
-
-        var password by rememberSaveable {
-            mutableStateOf("")
-        }
+//        var name by rememberSaveable {
+//            mutableStateOf("")
+//        }
+//
+//        var username by rememberSaveable {
+//            mutableStateOf("")
+//        }
+//
+//        var email by rememberSaveable {
+//            mutableStateOf("")
+//        }
+//
+//        var password by rememberSaveable {
+//            mutableStateOf("")
+//        }
 
         var showPassword by remember {
             mutableStateOf(false)
@@ -106,6 +107,19 @@ fun SignUpScreen(
         }
         
         val uploadState by viewModel.upload.observeAsState()
+
+        when(val uiState = uploadState){
+            is UiState.Loading ->{
+
+            }
+            is UiState.Success -> {
+
+            }
+            is UiState.Error -> {
+
+            }
+            else -> {}
+        }
 
         Column(
             modifier = Modifier

@@ -23,11 +23,21 @@ class SignUpVIewModel(private val repository: KicawRepository): ViewModel() {
     private val _upload = MutableLiveData<UiState<RegisterResponse>>()
     val upload: LiveData<UiState<RegisterResponse>> = _upload
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun uploadData(name: String, username: String, email: String, password: String){
         viewModelScope.launch {
-            repository.register(name, username, email, password).asFlow().collect{
-                _upload.value = it
+            try {
+                _isLoading.postValue(true)
+
+                repository.register(name, username, email, password).asFlow().collect{
+                    _upload.value = it
+                }
+            } finally {
+                _isLoading.postValue(false)
             }
+
         }
     }
 }

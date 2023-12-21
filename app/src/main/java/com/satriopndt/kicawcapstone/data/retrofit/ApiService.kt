@@ -1,4 +1,4 @@
-package com.satriopndt.kicawcapstone.data
+package com.satriopndt.kicawcapstone.data.retrofit
 
 import com.satriopndt.kicawcapstone.data.response.Login
 import com.satriopndt.kicawcapstone.data.response.LoginResponse

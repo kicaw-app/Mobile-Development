@@ -1,4 +1,4 @@
-package com.satriopndt.kicawcapstone.data
+package com.satriopndt.kicawcapstone.data.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -23,7 +23,7 @@ object ApiConfig {
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://kicaw-project.et.r.appspot.com/api/")
+            .baseUrl("https://kicaw-project.et.r.appspot.com/api/ ")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

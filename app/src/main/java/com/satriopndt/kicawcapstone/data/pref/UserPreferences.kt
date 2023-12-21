@@ -47,7 +47,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     companion object {
         @Volatile
-        private var instance: UserPreferences? = null
+        private var INSTANCE: UserPreferences? = null
 
         private val USER_ID_KEY = stringPreferencesKey("key_id")
         private val NAME_KEY = stringPreferencesKey("name_key")
@@ -55,9 +55,10 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private val IS_LOGIN = booleanPreferencesKey("isLogin_key")
 
         fun getInsance(dataStore: DataStore<Preferences>): UserPreferences {
-            return instance ?: synchronized(this) {
-                instance ?: UserPreferences(dataStore)
-                    .also { instance = it }
+            return INSTANCE ?: synchronized(this) {
+                val instance = UserPreferences(dataStore)
+                    INSTANCE = instance
+                    instance
             }
         }
     }

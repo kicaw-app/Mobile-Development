@@ -2,7 +2,7 @@ package com.satriopndt.kicawcapstone.repository
 
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
-import com.satriopndt.kicawcapstone.data.ApiService
+import com.satriopndt.kicawcapstone.data.retrofit.ApiService
 import com.satriopndt.kicawcapstone.data.UserModel
 import com.satriopndt.kicawcapstone.data.pref.UserPreferences
 import com.satriopndt.kicawcapstone.data.response.Login
@@ -14,7 +14,6 @@ import com.satriopndt.kicawcapstone.model.FakeDataForum
 import com.satriopndt.kicawcapstone.model.ForumModel
 import com.satriopndt.kicawcapstone.model.KicawModel
 import com.satriopndt.kicawcapstone.model.OrderBird
-import com.satriopndt.kicawcapstone.navigation.Screen
 import com.satriopndt.kicawcapstone.ui.helper.UiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

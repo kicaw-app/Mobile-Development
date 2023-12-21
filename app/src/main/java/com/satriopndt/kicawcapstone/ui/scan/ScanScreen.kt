@@ -77,6 +77,12 @@ fun ScanScreen(
             captureImageUri = currentImageUri!!
         }
 
+    val galleryLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent(), onResult = { uri ->
+        uri?.let {
+            currentImageUri = it
+        }
+    })
+
     fun startCamera() {
         currentImageUri = context.getImageUri(context)
         launcherCamera.launch(currentImageUri)
@@ -128,7 +134,7 @@ fun ScanScreen(
             androidx.compose.material.Button(
                 modifier = modifier
                     .clip(RoundedCornerShape(12.dp)),
-                onClick = { /*TODO*/ },
+                onClick = { galleryLauncher.launch("image/jpg/png") },
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
             ) {
                 Icon(imageVector = Icons.Default.Photo, contentDescription = null)

@@ -1,7 +1,7 @@
 package com.satriopndt.kicawcapstone.di
 
 import android.content.Context
-import com.satriopndt.kicawcapstone.data.ApiConfig
+import com.satriopndt.kicawcapstone.data.retrofit.ApiConfig
 import com.satriopndt.kicawcapstone.data.pref.UserPreferences
 import com.satriopndt.kicawcapstone.data.pref.dataStore
 import com.satriopndt.kicawcapstone.repository.KicawRepository

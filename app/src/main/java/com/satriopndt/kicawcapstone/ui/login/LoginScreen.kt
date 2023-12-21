@@ -81,7 +81,8 @@ fun LoginScreen(
     navController: NavHostController,
     viewModel: LoginViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(Injection.provideRepository(context))
-    )
+    ),
+    navigateToHome: () -> Unit
 
 ) {
 
@@ -150,6 +151,7 @@ fun LoginScreen(
                         true
                     )
                 )
+                navigateToHome()
             }
 
             is UiState.Error -> {
@@ -339,18 +341,18 @@ fun LoginScreen(
                         },
                         colors = ButtonDefaults.elevatedButtonColors(containerColor = greenToska)
                     ) {
-                        if (showLoading){
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(20.dp),
-                                color = Color.Black
-                            )
-                        } else{
+//                        if (showLoading){
+//                            CircularProgressIndicator(
+//                                modifier = Modifier.size(20.dp),
+//                                color = Color.Black
+//                            )
+//                        } else{
                             Text(
                                 text = "Sign In",
                                 color = colorResource(id = R.color.white),
 
                             )
-                        }
+//                        }
 
                     }
                 }
@@ -382,6 +384,7 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     KicawCapstoneTheme {
-        LoginScreen(navController = rememberNavController())
+        LoginScreen(navController = rememberNavController(),
+            navigateToHome = {})
     }
 }

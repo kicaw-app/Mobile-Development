@@ -2,6 +2,7 @@ package com.satriopndt.kicawcapstone
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.satriopndt.kicawcapstone.ui.main.MainViewModel
 import com.satriopndt.kicawcapstone.repository.KicawRepository
 import com.satriopndt.kicawcapstone.ui.forum.ForumViewModel
 import com.satriopndt.kicawcapstone.ui.history.HistoryViewModel
@@ -27,6 +28,9 @@ class ViewModelFactory(private val repository: KicawRepository): ViewModelProvid
         }
         if (modelClass.isAssignableFrom(SignUpVIewModel::class.java)){
             return SignUpVIewModel(repository) as T
+        }
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)){
+            return MainViewModel(repository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
