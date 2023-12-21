@@ -6,6 +6,8 @@ import com.satriopndt.kicawcapstone.repository.KicawRepository
 import com.satriopndt.kicawcapstone.ui.forum.ForumViewModel
 import com.satriopndt.kicawcapstone.ui.history.HistoryViewModel
 import com.satriopndt.kicawcapstone.ui.home.HomeViewModel
+import com.satriopndt.kicawcapstone.ui.login.LoginViewModel
+import com.satriopndt.kicawcapstone.ui.signup.SignUpVIewModel
 
 class ViewModelFactory(private val repository: KicawRepository): ViewModelProvider.NewInstanceFactory() {
 
@@ -19,6 +21,12 @@ class ViewModelFactory(private val repository: KicawRepository): ViewModelProvid
         }
         if (modelClass.isAssignableFrom(ForumViewModel::class.java)){
             return ForumViewModel(repository) as T
+        }
+        if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
+            return LoginViewModel(repository) as T
+        }
+        if (modelClass.isAssignableFrom(SignUpVIewModel::class.java)){
+            return SignUpVIewModel(repository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

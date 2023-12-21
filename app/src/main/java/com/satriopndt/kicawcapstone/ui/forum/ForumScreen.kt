@@ -40,7 +40,7 @@ fun ForumScreen(
     navController: NavHostController,
     viewModel: ForumViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
     ),
 ) {

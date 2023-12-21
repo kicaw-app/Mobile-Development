@@ -1,10 +1,12 @@
 package com.satriopndt.kicawcapstone.ui.home
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -27,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -42,10 +45,11 @@ import com.satriopndt.kicawcapstone.ui.theme.blueBackground
 
 @Composable
 fun HomeScreen(
+    context: Context = LocalContext.current,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
     ),
     navigateToDetail: (Long) -> Unit,
@@ -89,12 +93,11 @@ fun HomeScreen(
                 query = query,
                 onQueryChange = viewModel::Search
             );
-            Button(
+            IconButton(
                 modifier = Modifier
-                    .size(50.dp)
+
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color.White),
-//                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                 onClick = { navController.navigate(Screen.History.route) }) {
                 Icon(
                     modifier = Modifier

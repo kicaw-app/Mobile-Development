@@ -50,7 +50,7 @@ fun BottomBar(
             }
             NavigationBarItem(
                 selected = (currentRoute == navigationItem.screen.route),
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate(navigationItem.screen.route) },
                 icon = {
                     Icon(
                         imageVector = navigationItem.icon,

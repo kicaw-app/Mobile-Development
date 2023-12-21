@@ -1,5 +1,6 @@
 package com.satriopndt.kicawcapstone.ui.profile
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.satriopndt.kicawcapstone.R
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -30,11 +32,12 @@ import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 
 @Composable
 fun ProfileScreen(
+    context: Context = LocalContext.current,
     modifier: Modifier = Modifier,
     navController: NavHostController,
     viewModel: HistoryViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
         factory = ViewModelFactory(
-            Injection.provideRepository()
+            Injection.provideRepository(context)
         ),
     )
 ) {
