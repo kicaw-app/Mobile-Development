@@ -100,8 +100,8 @@ fun DiscussScreen(
             onClick = { /* TODO: Create logic for add discussion */ },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
+                .padding(16.dp)
+                .background(Color(0xFF079AA4), shape = RoundedCornerShape(15.dp))
         ) {
             Text(text = "Add", color = Color.White)
         }

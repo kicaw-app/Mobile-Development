@@ -28,10 +28,10 @@ class ForumViewModel(private val repository: KicawRepository): ViewModel() {
 
 //    val groupBirds: StateFlow<Map<Char, List<KicawModel>>> get() = _groupBird
 
-    private val _groupBird = MutableStateFlow(
-        repository.getBirdies()
-            .sortedBy { it.name }
-            .groupBy { it.name[0] }
+    private val _groupChat = MutableStateFlow(
+        repository.getForum()
+            .sortedBy { it.title }
+            .groupBy { it.title[0] }
     )
 
     fun getAllForum() {
@@ -39,14 +39,14 @@ class ForumViewModel(private val repository: KicawRepository): ViewModel() {
         _uiState.value = forum
     }
 
-    val groupBirds: StateFlow<Map<Char, List<KicawModel>>> get() = _groupBird
+    val groupBirds: StateFlow<Map<Char, List<ForumModel>>> get() = _groupChat
 
     private val _query = mutableStateOf("")
     val query: State<String> get() = _query
     fun Search(newQuery: String){
         _query.value = newQuery
-        _groupBird.value = repository.searchForum(_query.value)
-            .sortedBy { it.name }
-            .groupBy { it.name[0] }
+        _groupChat.value = repository.searchForum(_query.value)
+            .sortedBy { it.title }
+            .groupBy { it.title[0] }
     }
 }

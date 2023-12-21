@@ -40,7 +40,7 @@ fun ForumScreen(
         ),
     )
 ) {
-    val query = viewModel.query
+    val query by viewModel.query
 
     val forum by viewModel.uiState.observeAsState(listOf())
     LaunchedEffect(true){

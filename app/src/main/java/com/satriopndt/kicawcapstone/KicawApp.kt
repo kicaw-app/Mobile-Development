@@ -22,6 +22,7 @@ import com.satriopndt.kicawcapstone.ui.history.HistoryScreen
 import com.satriopndt.kicawcapstone.ui.home.HomeScreen
 import com.satriopndt.kicawcapstone.ui.login.LoginScreen
 import com.satriopndt.kicawcapstone.ui.signup.SignUpScreen
+import com.satriopndt.kicawcapstone.ui.splash.SplashScreen
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 
 @Composable
@@ -58,9 +59,14 @@ fun KicawApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Login.route,
+            startDestination = Screen.Splash.route,
             modifier = Modifier.padding(innerPadding)
         ) {
+            composable(Screen.Splash.route){
+                SplashScreen(
+                    navController = navController
+                )
+            }
             composable(Screen.Login.route){
                 LoginScreen(
                     navController = navController

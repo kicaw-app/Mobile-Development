@@ -92,7 +92,7 @@ fun SignUpScreen(
                     modifier = Modifier
                         .padding(50.dp)
                         .size(175.dp),
-                    painter = painterResource(id = drawable.logo_prikitiw),
+                    painter = painterResource(id = drawable.logo_splash),
                     contentDescription = "Logo App"
                 )
             }
