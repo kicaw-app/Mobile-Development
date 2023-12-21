@@ -28,9 +28,15 @@ import com.satriopndt.kicawcapstone.R
 import com.satriopndt.kicawcapstone.ViewModelFactory
 import com.satriopndt.kicawcapstone.di.Injection
 import com.satriopndt.kicawcapstone.ui.component.ForumCard
+<<<<<<< HEAD
 import com.satriopndt.kicawcapstone.ui.component.SearchBarForum
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 import com.satriopndt.kicawcapstone.ui.theme.blueBackground
+=======
+import com.satriopndt.kicawcapstone.ui.component.SearchBar
+import com.satriopndt.kicawcapstone.ui.home.HomeScreen
+import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
+>>>>>>> 16144b9a8a7273e3c80c1b784a81c17574c9eb49
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -92,4 +98,16 @@ fun Preview(){
     }
 }
 // Define a data class to hold the chat information
+<<<<<<< HEAD
 //    data class Chat(val title: String, val message: String, val time: String)
+=======
+data class Chat(val title: String, val message: String, val time: String)
+
+@Preview(showBackground = true)
+@Composable
+fun ForumScreenPreview() {
+    KicawCapstoneTheme {
+        ForumScreen(navController = rememberNavController())
+    }
+}
+>>>>>>> 16144b9a8a7273e3c80c1b784a81c17574c9eb49

@@ -56,8 +56,12 @@ class KicawRepository(
         }
     }
 
+<<<<<<< HEAD
 
     fun searchForum(query: String): List<ForumModel> {
+=======
+    fun searchForum(query: String): List<ForumModel>{
+>>>>>>> 16144b9a8a7273e3c80c1b784a81c17574c9eb49
         return FakeDataForum.dummyForum.filter {
             it.title.contains(query, ignoreCase = false)
         }
