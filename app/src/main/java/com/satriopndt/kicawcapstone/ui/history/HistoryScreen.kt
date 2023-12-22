@@ -92,7 +92,7 @@ fun HistoryScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun HistoryScreenPreview() {
+fun HisoryScreenPreview() {
     KicawCapstoneTheme {
         HistoryScreen(navController = rememberNavController())
     }
