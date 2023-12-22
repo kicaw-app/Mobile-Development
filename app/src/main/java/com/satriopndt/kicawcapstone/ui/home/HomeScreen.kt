@@ -73,7 +73,9 @@ fun HomeScreen(
         TopAppBar(
             title = {},
             actions = {
-                IconButton(onClick = { /*TODO*/ }
+                IconButton(onClick = {
+                    navController.navigate(Screen.Profile.route)
+                }
                 ) {
                     Icon(imageVector = Icons.Default.Menu,
                         contentDescription = "Menu",

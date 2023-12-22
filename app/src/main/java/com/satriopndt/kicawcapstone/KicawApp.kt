@@ -79,8 +79,11 @@ fun KicawApp(
 
         NavHost(
             navController = navController,
-
             startDestination = destination,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(Screen.Login.route) {
+            startDestination = Screen.Splash.route,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Splash.route){

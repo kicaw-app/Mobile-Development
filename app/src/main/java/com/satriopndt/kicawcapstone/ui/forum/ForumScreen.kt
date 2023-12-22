@@ -3,6 +3,7 @@ package com.satriopndt.kicawcapstone.ui.forum
 import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,9 +32,6 @@ import com.satriopndt.kicawcapstone.ui.component.ForumCard
 import com.satriopndt.kicawcapstone.ui.component.SearchBarForum
 import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 import com.satriopndt.kicawcapstone.ui.theme.blueBackground
-import com.satriopndt.kicawcapstone.ui.component.SearchBar
-import com.satriopndt.kicawcapstone.ui.home.HomeScreen
-import com.satriopndt.kicawcapstone.ui.theme.KicawCapstoneTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,7 +70,11 @@ fun ForumScreen(
         })
         SearchBarForum(query = query, onQueryChange = viewModel::Search)
 
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentPadding = PaddingValues(vertical = 8.dp, horizontal = 16.dp)
+        ) {
             forum.forEach { }
             items(forum.size) {
                 // Use a Card to create the chat bubble with title, message, and time
@@ -94,14 +96,5 @@ fun Preview(){
         ForumScreen(navController = rememberNavController())
     }
 }
-// Define a data class to hold the chat information
-//    data class Chat(val title: String, val message: String, val time: String)
-data class Chat(val title: String, val message: String, val time: String)
 
-@Preview(showBackground = true)
-@Composable
-fun ForumScreenPreview() {
-    KicawCapstoneTheme {
-        ForumScreen(navController = rememberNavController())
-    }
-}
+data class Chat(val title: String, val message: String, val time: String)

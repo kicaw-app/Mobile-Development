@@ -1,4 +1,4 @@
-package com.satriopndt.kicawcapstone.ui.signup
+    package com.satriopndt.kicawcapstone.ui.signup
 
 import android.content.Context
 import androidx.compose.foundation.Image
