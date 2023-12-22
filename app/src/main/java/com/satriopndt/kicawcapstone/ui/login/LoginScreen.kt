@@ -182,7 +182,7 @@ fun LoginScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.logo_splash),
+                        painter = painterResource(id = R.drawable.logo_prikitiw),
                         contentDescription = null,
                         contentScale = ContentScale.Fit,
                         modifier = modifier

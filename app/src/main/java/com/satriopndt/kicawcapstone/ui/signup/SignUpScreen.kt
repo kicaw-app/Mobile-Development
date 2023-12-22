@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -70,6 +71,7 @@ fun SignUpScreen(
         factory = ViewModelFactory(Injection.provideRepository(context))
     )
 ) {
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -99,32 +101,40 @@ fun SignUpScreen(
         val focusRequester = remember { FocusRequester() }
         var isFocused by remember { mutableStateOf(false) }
         val wasFocused = remember { isFocused }
+
+        val scrollStateVertical = rememberScrollState()
+
         val containerColor = colorResource(id = R.color.lavender)
         LaunchedEffect(true) {
             if (wasFocused) {
                 focusRequester.requestFocus()
             }
         }
-        
+
         val uploadState by viewModel.upload.observeAsState()
 
-        when(val uiState = uploadState){
-            is UiState.Loading ->{
+        when (val uiState = uploadState) {
+            is UiState.Loading -> {
 
             }
+
             is UiState.Success -> {
-
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(0)
+                }
             }
+
             is UiState.Error -> {
 
             }
+
             else -> {}
         }
 
         Column(
             modifier = Modifier
-                .fillMaxWidth(1f)
-                .fillMaxHeight(1f)
+                .fillMaxSize()
+                .verticalScroll(scrollStateVertical)
                 .background(blueBackground)
         ) {
             Row(
@@ -137,7 +147,7 @@ fun SignUpScreen(
                     modifier = Modifier
                         .padding(50.dp)
                         .size(175.dp),
-                    painter = painterResource(id = drawable.logo_splash),
+                    painter = painterResource(id = drawable.logo_prikitiw),
                     contentDescription = "Logo App"
                 )
             }
@@ -172,7 +182,7 @@ fun SignUpScreen(
                         .onFocusChanged {
                             isFocused = it.isFocused
                         },
-                    label = { Text(text = "Name")},
+                    label = { Text(text = "Name") },
                     shape = RoundedCornerShape(15.dp),
                     maxLines = 1,
                 )
@@ -207,8 +217,8 @@ fun SignUpScreen(
                         .focusRequester(focusRequester)
                         .onFocusChanged {
                             isFocused = it.isFocused
-                        } ,
-                    label = {Text(text = "Username")},
+                        },
+                    label = { Text(text = "Username") },
                     shape = RoundedCornerShape(15.dp),
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -246,7 +256,7 @@ fun SignUpScreen(
                         .onFocusChanged {
                             isFocused = it.isFocused
                         },
-                    label = { Text(text = "Email")},
+                    label = { Text(text = "Email") },
                     shape = RoundedCornerShape(15.dp),
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -280,7 +290,7 @@ fun SignUpScreen(
                         .onFocusChanged { //restore keyboard while rotation
                             isFocused = it.isFocused
                         },
-                    label = { Text(text = "Password")},
+                    label = { Text(text = "Password") },
                     visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
                         if (showPassword) {
@@ -315,9 +325,14 @@ fun SignUpScreen(
                     modifier = Modifier
                         .width(200.dp),
                     onClick = {
-                        navController.navigate(Screen.Login.route) {
-                            popUpTo(0)
-                        }
+                        viewModel.uploadData(
+                            viewModel.name,
+                            viewModel.username,
+                            viewModel.email,
+                            viewModel.password
+                        )
+
+
                     },
                     shape = RoundedCornerShape(15.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = greenToska)
